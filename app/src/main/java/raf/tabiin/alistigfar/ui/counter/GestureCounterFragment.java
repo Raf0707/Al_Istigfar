@@ -1,23 +1,34 @@
 package raf.tabiin.alistigfar.ui.counter;
 
 
+import static android.content.Context.VIBRATOR_SERVICE;
+import static androidx.core.content.ContextCompat.getSystemService;
 import static raf.tabiin.alistigfar.util.UtilFragment.changeFragment;
 
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Handler;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.MessageFormat;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import raf.tabiin.alistigfar.R;
@@ -36,6 +47,7 @@ public class GestureCounterFragment extends Fragment {
     private CounterItem counterItem;
     private CounterViewModel counterViewModel;
     private MainSwipeFragment mainSwipeFragment;
+    private int maxValue;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,6 +81,84 @@ public class GestureCounterFragment extends Fragment {
         mainSwipeFragment = new MainSwipeFragment();
 
         handler = new Handler();
+
+        binding.saveCounterEditions.setOnClickListener(view -> {
+            // saveText()
+            binding.counterTarget.setText(binding.counterTarget.getText().toString()
+                    .replaceAll("[\\.\\-,\\s]+", ""));
+
+            binding.counterTarget.setCursorVisible(false);
+            binding.counterTarget.setFocusableInTouchMode(false);
+            binding.counterTarget.setEnabled(false);
+
+            binding.counterTitle.setCursorVisible(false);
+            binding.counterTitle.setFocusableInTouchMode(false);
+            binding.counterTitle.setEnabled(false);
+
+            if (binding.counterTarget.getText().toString().length() == 0) {
+                binding.counterTarget.setText("10");
+                maxValue = Integer.parseInt(binding.counterTarget.getText().toString());
+
+                Snackbar.make(requireView(),
+                        new StringBuilder().append("Вы не ввели цель. По умолчанию: ")
+                                .append(10),
+                        Snackbar.LENGTH_LONG).show();
+
+            } else {
+
+                if (Integer.parseInt(binding.counterTarget.getText().toString()) <= 0) {
+                    Snackbar.make(requireView(), new StringBuilder()
+                                    .append("Введите число больше нуля!"),
+                            Snackbar.LENGTH_LONG).show();
+
+                } else {
+
+                    Snackbar.make(requireView(),
+                            new StringBuilder().append("Цель установлена"),
+                            Snackbar.LENGTH_LONG).show();
+
+                    maxValue = Integer.parseInt(binding.counterTarget.getText().toString());
+
+                }
+            }
+
+            counterItem.title = binding.counterTitle.getText().toString();
+            counterItem.target = Integer.parseInt(binding.counterTarget.getText().toString());
+            counterViewModel.update(counterItem);
+        });
+
+        binding.editCounterBtn.setOnClickListener(view -> {
+
+            binding.counterTarget.setCursorVisible(true);
+            binding.counterTarget.setFocusableInTouchMode(true);
+            binding.counterTarget.setEnabled(true);
+
+            binding.counterTitle.setCursorVisible(true);
+            binding.counterTitle.setFocusableInTouchMode(true);
+            binding.counterTitle.setEnabled(true);
+
+            binding.counterTarget.requestFocus();
+
+            binding.counterTarget.setSelection(
+                    binding.counterTarget.getText().length());
+
+            getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                    WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+
+            getActivity().getWindow().setSoftInputMode(
+                    WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
+            getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+            InputMethodManager imm = (InputMethodManager) getActivity()
+                    .getSystemService(Context
+                            .INPUT_METHOD_SERVICE);
+
+            if (imm != null) {
+                imm.showSoftInput(binding.counterTarget, InputMethodManager.SHOW_FORCED);
+            }
+
+        });
 
         binding.openSettingsBtn.setOnClickListener(view -> {
             changeFragment(requireActivity(),
@@ -143,6 +233,7 @@ public class GestureCounterFragment extends Fragment {
                                 .getText().toString());
                         counterItem.progress = counter;
                         counterViewModel.update(counterItem);
+
                     }
 
                     @Override
@@ -176,32 +267,8 @@ public class GestureCounterFragment extends Fragment {
 
                 });
 
-        /*
-        Thread t = new Thread(() -> {
-            try{
-                TimeUnit.MILLISECONDS.sleep(100);
-                handler.post(r);
-            } catch(InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-
-        t.start();
-
-         */
-
         return binding.getRoot();
     }
-
-    /*
-    Runnable r = new Runnable() {
-        public void run(){
-            binding.gestureCounter.setText(Integer.toString(counter));
-            handler.postDelayed(r,100);
-        }
-    };
-
-     */
 
     public void onMaterialAlert() {
         new MaterialAlertDialogBuilder(requireContext(),
