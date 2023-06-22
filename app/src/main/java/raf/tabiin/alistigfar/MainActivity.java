@@ -16,6 +16,7 @@ import raf.tabiin.alistigfar.databinding.ActivityMainBinding;
 import raf.tabiin.alistigfar.ui.about_app.AppAboutFragment;
 import raf.tabiin.alistigfar.ui.counter.GestureCounterFragment;
 import raf.tabiin.alistigfar.ui.counter.MainSwipeFragment;
+import raf.tabiin.alistigfar.ui.info.InfoFragment;
 import raf.tabiin.alistigfar.ui.istigfar.AlIstigfarFragment;
 import raf.tabiin.alistigfar.ui.settings.SettingsFragment;
 import raf.tabiin.alistigfar.util.SharedPreferencesUtils;
@@ -134,6 +135,15 @@ public class MainActivity extends AppCompatActivity {
 
         binding.navView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
+
+                case R.id.info:
+
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.containerFragment, new InfoFragment())
+                            .commit();
+
+                    return true;
+
                 case R.id.alistigfar:
 
                     getSupportFragmentManager().beginTransaction()

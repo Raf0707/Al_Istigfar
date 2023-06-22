@@ -1,4 +1,4 @@
-package raf.tabiin.alistigfar.ui.istigfar;
+package raf.tabiin.alistigfar.ui.info;
 
 import android.os.Bundle;
 
@@ -9,15 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import raf.tabiin.alistigfar.R;
-import raf.tabiin.alistigfar.databinding.FragmentAlIstigfarBinding;
+import raf.tabiin.alistigfar.databinding.FragmentInfoBinding;
 
-public class AlIstigfarFragment extends Fragment {
+public class InfoFragment extends Fragment {
 
-    FragmentAlIstigfarBinding b;
+    FragmentInfoBinding b;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        b = FragmentAlIstigfarBinding.inflate(getLayoutInflater());
+
+        b = FragmentInfoBinding.inflate(getLayoutInflater());
 
 
 
