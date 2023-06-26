@@ -122,7 +122,7 @@ public class AppAboutFragment extends Fragment {
         binding.rateBtn.setOnLongClickListener(v -> {
             addOnClick(v, "RuStore link rate copied",
                     ClipData.newPlainText(getString(R.string.rateApp),
-                            "https://apps.rustore.ru/app/ru.tabiin.counters"));
+                            "https://apps.rustore.ru/app/ru.tabiin.alistigfar"));
             return true;
         });
 
