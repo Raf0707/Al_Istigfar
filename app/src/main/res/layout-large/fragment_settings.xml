@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Внешний вид"
-                android:textSize="21sp"
+                android:textSize="51sp"
                 android:textStyle="bold"/>
             <RadioGroup
                 android:id="@+id/appThemeRadioGroup"
@@ -36,21 +36,24 @@
                     android:id="@+id/setFollowSystemTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="16dp"
                     android:text="Follow system"
-                    android:textSize="18sp"/>
+                    android:textSize="48sp"/>
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/setLightTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Light mode"
-                    android:textSize="18sp"/>
+                    android:padding="16dp"
+                    android:textSize="48sp"/>
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/setNightTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Night mode"
-                    android:textSize="18sp"/>
-                
+                    android:padding="16dp"
+                    android:textSize="48sp"/>
+
             </RadioGroup>
 
             <com.google.android.material.switchmaterial.SwitchMaterial
@@ -60,7 +63,8 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="8dp"
                 android:text="Use Dynamic colors"
-                android:textSize="18sp"/>
+                android:padding="16dp"
+                android:textSize="48sp"/>
 
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/addFollowSystemIconOnMain"
@@ -68,8 +72,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="8dp"
+                android:padding="16dp"
                 android:text="FollowSystem icon on Main Screen"
-                android:textSize="18sp"/>
+                android:textSize="48sp"/>
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
