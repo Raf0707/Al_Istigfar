@@ -340,6 +340,30 @@ public class AppAboutFragment extends Fragment {
                             "https://apps.rustore.ru/app/ru.tabiin.ramadan"));
             return true;
         });
+
+        binding.sourceCodeBtnCounters.setOnClickListener(v -> new CustomTabUtil()
+                .openCustomTab(getActivity(),
+                        "https://github.com/Raf0707/Counters",
+                        R.color.purple_300));
+
+        binding.sourceCodeBtnCounters.setOnLongClickListener(v -> {
+            addOnClick(v, "link to download Counters copied",
+                    ClipData.newPlainText(getString(R.string.getContext),
+                            "https://github.com/Raf0707/Counters"));
+            return true;
+        });
+
+        binding.downloadCountersApp.setOnClickListener(v -> new CustomTabUtil()
+                .openCustomTab(getActivity(),
+                        "https://apps.rustore.ru/app/ru.tabiin.counters",
+                        R.color.purple_300));
+
+        binding.downloadCountersApp.setOnLongClickListener(v -> {
+            addOnClick(v, "link to Counters sourse copied",
+                    ClipData.newPlainText(getString(R.string.getContext),
+                            "https://apps.rustore.ru/app/ru.tabiin.counters"));
+            return true;
+        });
     }
 
     public void addOnClick(View view, String text, ClipData clipData) {

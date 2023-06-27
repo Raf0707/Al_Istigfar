@@ -79,14 +79,6 @@ public class SettingsFragment extends Fragment {
             requireActivity().recreate();
         });
 
-
-
-        binding.backFromSettingsFragment.setOnClickListener(v -> {
-            getChildFragmentManager().beginTransaction()
-                    .replace(R.id.containerFragment, new AppAboutFragment())
-                    .commit();
-        });
-
     }
 
     @Override
