@@ -222,7 +222,7 @@ public class AlIstigfarFragment extends Fragment {
                     Snackbar.LENGTH_SHORT).show();
         });
 
-        b.i1.setOnClickListener(v -> {
+        b.i15.setOnClickListener(v -> {
             ClipboardManager clipboard = (ClipboardManager)
                     v.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("",

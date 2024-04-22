@@ -1169,7 +1169,7 @@
                             android:id="@+id/i15Transcript"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Транскрипция: \n Аллахумма иннакя 'афуввун тухыббуль 'аффуа фа'фуанни"
+                            android:text="Транскрипция: \n Аллахумма иннакя 'афуввун Кярим тухыббуль 'аффуа фа'фуанни"
                             android:layout_marginTop="8dp"
                             android:gravity="center"
                             android:textSize="50sp"
